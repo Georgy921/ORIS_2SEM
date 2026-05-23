@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MiniHttpServer.Model
+{
+    public class User
+    {
+        public int id { get; set; }
+        public string username { get; set; }
+        public string login { get; set; }
+        public string password { get; set; } 
+        public string role { get; set; } = "user"; 
+        public DateTime created_at { get; set; } = DateTime.Now;
+    }
+}

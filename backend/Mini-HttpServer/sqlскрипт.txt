@@ -1,0 +1,108 @@
+строка подключения настройки
+{
+    "Domain": "localhost",
+    "Port": 1234,
+
+    "ConnectionString": "Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=9996",
+
+    "SmtpHost": "smtp.gmail.com",
+    "SmtpPort": 587,
+    "SmtpEnableSsl": true,
+    "SmtpUsername": "aleksysnmpov@gmail.com",
+    "SmtpPassword": "aLZd8kbW4pSm5mPVVBLK",
+    "EmailFrom": "google@gmail.com"
+}
+
+
+
+
+у нас появится база данных с 4 турами
+
+
+DROP TABLE IF EXISTS tours;
+
+CREATE TABLE tours (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    arrival_city VARCHAR(100) NOT NULL,
+    departure_city VARCHAR NOT NULL,
+    departure_date VARCHAR NOT NULL,
+    nights_count INTEGER NOT NULL CHECK (nights_count > 0),
+    adults_count INTEGER NOT NULL CHECK (adults_count > 0),
+    tour_price DECIMAL(10, 2) NOT NULL CHECK (tour_price >= 0),
+    image_url VARCHAR(500), 
+    bonus INTEGER NOT NULL CHECK (bonus > 0),
+    wifi VARCHAR(100),
+    distance_to_airport INTEGER,
+    general_description TEXT,
+    has_kids_club BOOL,
+    hotel_name VARCHAR(255),
+    has_aquapark BOOL,
+    has_spa BOOL,
+    room_type VARCHAR(50),
+    popular_filters VARCHAR(50),
+    region VARCHAR(50),
+    rating INTEGER DEFAULT 5 CHECK (rating BETWEEN 1 AND 5),
+    meal_plan VARCHAR(50) DEFAULT 'all-inclusive'
+);
+
+INSERT INTO tours (
+    name, departure_city, arrival_city, departure_date, nights_count, adults_count, tour_price,
+    image_url, bonus, wifi, distance_to_airport, general_description, hotel_name, has_kids_club, has_aquapark,
+    has_spa, room_type, popular_filters, region,
+    rating, meal_plan
+) VALUES
+(
+   'TUI MAGIC LIFE Jacaranda', 'Казань', 'Аланья', '5 мар.', 7, 5, 124_320, 'https://apigate-tui.fstravel.com/api/geocontent/static/Hotel/00210000-ac11-0242-bd2c-08d982ab9707/MainPhoto-Source-okd3c5uc.jpg'
+   ,2486,'Wi-Fi в общественных местах (бесплатно)', 50, 'Курортный отель через дорогу от пляжа. Отлично подходит для семейного отдыха. Предлагает своим гостям разнообразное питание и большой выбор развлечений. На территории есть несколько бассейнов, водные горки, работают детский клуб и SPA-салон.'
+   ,'TUI MAgis', TRUE,TRUE,TRUE, 'Апартаменты','all-inclusive', 'Турция', 5, 'ultra-all'
+);
+
+INSERT INTO tours (
+    name, departure_city, arrival_city, departure_date, nights_count, adults_count, tour_price,
+    image_url, bonus, wifi, distance_to_airport, general_description, hotel_name, has_kids_club, has_aquapark,
+    has_spa, room_type, popular_filters, region,
+    rating, meal_plan
+) VALUES
+(
+   'Corendon Playa Kemer', 'Москва', 'Кемер', '5 мар.', 7, 4, 147_168, 'https://apigate-tui.fstravel.com/api/geocontent/static/Hotel/00210000-ac11-0242-8973-08d982ca6c7d/MainPhoto-Source-tl23t02b.jpg'
+   ,2943,'Wi-Fi в номерах', 50, 'Курортный отель в живописном уединенном месте на берегу моря. Отлично подойдет для отдыха вдвоем или семьей. На территории есть бассейны с водными горками, детский клуб, SPA-центр. К услугам гостей несколько ресторанов и баров.
+
+Общая площадь территории: 20 000 кв. м.
+
+Последняя реновация: 2021 г.'
+   ,'Corendor', TRUE,False,TRUE, '3-x комнатные','first-line', 'Турция', 5, 'ultra'
+);
+
+
+INSERT INTO tours (
+    name, departure_city, arrival_city, departure_date, nights_count, adults_count, tour_price,
+    image_url, bonus, wifi, distance_to_airport, general_description, hotel_name, has_kids_club, has_aquapark,
+    has_spa, room_type, popular_filters, region,
+    rating, meal_plan
+) VALUES
+(
+   'EFdmii hotrer', 'Казань', 'Кемер', '12 мар.', 7, 3, 86_496, 'https://apigate-tui.fstravel.com/api/geocontent/static/Hotel/00180000-ac11-0242-c6c2-08d993975bea/MainPhoto-Source-iw2vom4j.jpg'
+   ,1729,'Wi-Fi в общественных местах и в номерах (бесплатно)', 500, 'Небольшой уютный отель в Кемере. Месторасположение отеля позволяет насладиться не только морем и солнцем, а еще и прогулками в прибрежном национальном парке Бейдаглары. К услугам гостей компактные номера, ресторан, бар у бассейна, открытый бассейн и бесплатный Wi-Fi на всей территории отеля. Рекомендуется для бюджетного отдыха.
+
+
+'
+   ,'ajajra cuju', FALSE ,TRUE,TRUE, '2-у местная палатка','wi-fi', 'Турция', 3, 'ultra-all'
+);
+
+
+INSERT INTO tours (
+    name, departure_city, arrival_city, departure_date, nights_count, adults_count, tour_price,
+    image_url, bonus, wifi, distance_to_airport, general_description, hotel_name, has_kids_club, has_aquapark,
+    has_spa, room_type, popular_filters, region,
+    rating, meal_plan
+) VALUES
+(
+   'Lika Hotel', 'Новосибирск', 'Стамбул', '31 мая.', 14, 2, 55_008, 'https://apigate-tui.fstravel.com/api/geocontent/static/Hotel/00210000-ac11-0242-e95d-08d982eaed3a/MainPhoto-Source-njc0m4qt.jpg'
+   ,1100,'Wi-Fi на всей територии', 50, 'Отель Lika находится в стамбульском районе Фатих и располагает номерами с кондиционером, телевизором с плоским экраном и спутниковыми каналами.В распоряжении гостей круглосуточная стойка регистрации, общий лаундж и пункт обмена валюты. Гости отеля могут исследовать древние памятники и достопримечательности и ощутить настоящее турецкое гостеприимство. Для незабываемого отдыха в Стамбуле отель Lika - идеальный выбор. Отель построен в 2005 г. Последняя реновация прошла в 2019 году.
+
+
+'
+   ,'LIkaLiaks', TRUE ,TRUE,FALSE , 'сухой подвал','wi-fi', 'Турция', 2, 'pansion'
+);
+
